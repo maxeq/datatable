@@ -136,6 +136,21 @@ export default App;
 
 ---
 
+### Examples
+
+#### Usage of `formatType`
+
+```tsx
+const columns = [
+  { key: 'name', label: 'Name', sortable: true, formatType: 'text' },
+  { key: 'balance', label: 'Balance', formatType: 'currency' },
+  { key: 'birthDate', label: 'Birth Date', formatType: 'date' },
+  { key: 'discountRate', label: 'Discount Rate', formatType: 'percentage' },
+];
+```
+
+---
+
 ## 🎨 Customization
 
 ### Fallback Rendering
