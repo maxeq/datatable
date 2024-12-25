@@ -1,0 +1,42 @@
+{
+    "name": "@maxeq-ui/datatable",
+    "version": "1.0.2",
+    "description": "A customizable data table component for React.",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/types.d.ts",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "rollup -c",
+        "prepare": "npm run build"
+    },
+    "keywords": [
+        "react",
+        "data table",
+        "typescript",
+        "maxeq-ui"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/maxeq-ui/datatable.git"
+    },
+    "author": "Maksims Vološčuks maxeq1@gmail.com https://github.com/maxeq",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^28.0.1",
+        "@rollup/plugin-node-resolve": "^15.3.0",
+        "@rollup/plugin-typescript": "^12.1.1",
+        "rollup": "^4.28.1",
+        "rollup-plugin-peer-deps-external": "^2.2.4"
+    }
+}
