@@ -1,30 +1,45 @@
-export function formattedValue(key: string, value: string | number): string {
-  if (typeof value !== 'string' && typeof value !== 'number') {
-    return '';
+export function formattedValueTable(
+  value: string | number | undefined,
+  formatType: string,
+): string {
+  if (value == null) {
+    // Handle null or undefined
+    return '-';
   }
 
-  if (['created_at', 'due_date', 'pay_date', 'dueDate', 'earlyPayDate'].includes(key)) {
-    const date = new Date(value as string);
-    return date.toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    });
+  switch (formatType) {
+    case 'date': {
+      if (typeof value === 'string') {
+        const date = new Date(value);
+        return isNaN(date.getTime())
+          ? '-'
+          : date.toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+            });
+      }
+      return '-';
+    }
+    case 'currency': {
+      if (typeof value === 'number') {
+        return Intl.NumberFormat('en-EN', {
+          style: 'currency',
+          currency: 'EUR',
+          currencyDisplay: 'narrowSymbol',
+        })
+          .format(value)
+          .replace('€', '€\u00A0');
+      }
+      return '-';
+    }
+    case 'percentage': {
+      if (typeof value === 'number') {
+        return `${(value * 100).toFixed(2)}%`;
+      }
+      return '-';
+    }
+    default:
+      return typeof value === 'string' || typeof value === 'number' ? value.toString() : '-';
   }
-
-  if (key === 'amount' || key === 'early_pay') {
-    return Intl.NumberFormat('en-EN', {
-      style: 'currency',
-      currency: 'EUR',
-      currencyDisplay: 'narrowSymbol',
-    })
-      .format(value as number)
-      .replace('€', '€\u00A0');
-  }
-
-  if (key === 'pay_discount') {
-    return `${((value as number) * 100).toFixed(2)}%`;
-  }
-
-  return value.toString();
 }

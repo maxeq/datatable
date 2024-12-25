@@ -1,8 +1,6 @@
-
-import { formattedValue } from '@/utils/formatting';
-import { ArrowDown, ArrowUp } from 'lucide-react';
+import { formattedValueTable } from '@/utils/formatting';
+import { ArrowDown, ArrowUp, CheckIcon } from 'lucide-react';
 import React, { useState } from 'react';
-import CheckIcon from './icons/Check';
 
 export type VirtualKeys = '__virtualKey1' | '__virtualKey2';
 
@@ -11,9 +9,10 @@ export type Column<T> = {
   label: string;
   render?: (value: T[keyof T] | undefined, row: T) => React.ReactNode;
   sortable?: boolean;
+  formatType?: 'date' | 'currency' | 'percentage' | 'text';
 };
 
-interface DataTableProps<T> {
+interface DataTableProps<T extends object> {
   columns: Column<T>[];
   data: T[];
   primaryKey: keyof T;
@@ -32,7 +31,6 @@ const DataTable = <T extends object>({
   onSelectionChange,
   rowClassName,
 }: DataTableProps<T>) => {
-  // Ensure primaryKey is provided
   if (selectable && !primaryKey) {
     throw new Error('primaryKey is required when selectable is true');
   }
@@ -201,21 +199,34 @@ const DataTable = <T extends object>({
                     </td>
                   )}
                   {columns.map((column) => {
-                    const isVirtualKey = typeof column.key === 'string' && !(column.key in row);
-                    const value = isVirtualKey ? undefined : row[column.key as keyof T];
+                    const isVirtualKey =
+                      typeof column.key === 'string' && row[column.key as keyof T] === undefined;
+                    const value: T[keyof T] | undefined = isVirtualKey
+                      ? undefined
+                      : row[column.key as keyof T];
+
+                    const cellContent = column.render
+                      ? column.render(value, row)
+                      : column.formatType &&
+                          (typeof value === 'string' ||
+                            typeof value === 'number' ||
+                            value === undefined)
+                        ? formattedValueTable(
+                            value as string | number | undefined,
+                            column.formatType,
+                          )
+                        : value == null
+                          ? '-'
+                          : typeof value === 'string' || typeof value === 'number'
+                            ? value
+                            : JSON.stringify(value);
 
                     return (
                       <td
                         key={String(column.key)}
                         className="whitespace-nowrap px-4 py-[10px] text-left"
                       >
-                        <div>
-                          {column.render
-                            ? column.render(value, row)
-                            : isVirtualKey
-                              ? 'N/A'
-                              : formattedValue(String(column.key), String(value))}
-                        </div>
+                        <div>{cellContent}</div>
                       </td>
                     );
                   })}
