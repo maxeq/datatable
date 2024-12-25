@@ -1,6 +1,6 @@
 # Changelog
 
-# Changelog for Version 1.0.5 - 2024-12-25
+# Changelog for Version 1.0.6 - 2024-12-25
 
 ## 🚀 New Features
 
