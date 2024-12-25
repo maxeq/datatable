@@ -1,15 +1,16 @@
 
 # @maxeq-ui/datatable
 
-> A highly customizable and reusable data table component for React, supporting sorting, selection, and custom rendering.
+> A highly customizable and reusable data table component for React, supporting sorting, selection, custom rendering, and row styling.
 
 ---
 
 ## ✨ Features
 
 - **Customizable Columns**: Define labels, keys, and custom render logic for each column.
-- **Sorting**: Enable sorting on specific columns.
+- **Sorting**: Enable sorting on specific columns with ascending and descending orders.
 - **Row Selection**: Allow single or multiple row selection with callbacks.
+- **Dynamic Row Styling**: Apply conditional or static styles to rows.
 - **TypeScript Support**: Fully typed for strong type safety.
 
 ---
@@ -38,7 +39,7 @@ npm install react react-dom lucide-react
 
 ## 🚀 Usage
 
-Here’s a basic example of how to use the `DataTable` component:
+Here’s an example of how to use the updated `DataTable` component:
 
 ```tsx
 import React from 'react';
@@ -56,19 +57,17 @@ const data = [
   { id: 3, name: 'Mike Johnson', age: 35, city: 'Chicago' },
 ];
 
-## Example Screenshot
-
-![DataTable Example](https://raw.githubusercontent.com/maxeq-ui/<your-repo>/main/docs/datatable-example.png)
-
-
-
 const App = () => (
   <DataTable
     columns={columns}
     data={data}
     primaryKey="id"
     selectable={true}
+    initialSelectedRows={[data[0]]}
     onSelectionChange={(selectedRows) => console.log(selectedRows)}
+    rowClassName={(row, index) =>
+      row.age > 30 ? 'bg-red-100' : 'bg-green-100'
+    }
   />
 );
 
@@ -89,6 +88,7 @@ export default App;
 | `selectable`          | `boolean`                                                         | `false`     | Enables row selection.                                                                          |
 | `onSelectionChange`   | `(selectedRows: T[]) => void`                                      | `undefined` | Callback triggered when selected rows change.                                                   |
 | `initialSelectedRows` | `T[]`                                                              | `[]`        | Rows preselected when the table renders.                                                        |
+| `rowClassName`        | `string | (row: T, index: number) => string`                      | `undefined` | Apply custom class names to rows, either statically or dynamically based on row data.           |
 
 ### `Column<T>`
 
@@ -103,8 +103,8 @@ export default App;
 
 ## 🎨 Customization
 
-### Styling
-This component uses utility classes (e.g., TailwindCSS). You can override or extend styles using your CSS framework or custom classes.
+### Row Styling
+Use the `rowClassName` prop to dynamically apply styles to rows. This can be a string for static styles or a function that returns a string based on the row's data.
 
 ---
 
@@ -112,7 +112,7 @@ This component uses utility classes (e.g., TailwindCSS). You can override or ext
 
 - **React**: `^17.0.0` or `^18.0.0`
 - **React DOM**: `^17.0.0` or `^18.0.0`
-- **lucide-react**: For the `ArrowDown` and `ArrowUp` icons.
+- **lucide-react**: For the sorting icons.
 
 ---
 
