@@ -107,34 +107,34 @@ const App = () => (
 
 export default App;
 ```
-
 ---
 
 ## 📖 Props
 
 ### `DataTableProps<T>`
 
-| **Prop Name**         | **Type**                                                             | **Default** | **Description**                                                                                  |
-|-----------------------|----------------------------------------------------------------------|-------------|--------------------------------------------------------------------------------------------------|
-| `columns`             | `Column<T>[]`                                                      | **Required** | Defines the structure of the table columns, including labels, keys, formatting, and renderers.  |
-| `data`                | `T[]`                                                              | **Required** | Array of data objects to render in the table.                                                   |
-| `primaryKey`          | `keyof T`                                                          | **Required** | Unique identifier for each row (used for selection).                                            |
-| `selectable`          | `boolean`                                                         | `false`     | Enables row selection.                                                                          |
-| `onSelectionChange`   | `(selectedRows: T[]) => void`                                      | `undefined` | Callback triggered when selected rows change.                                                   |
-| `initialSelectedRows` | `T[]`                                                              | `[]`        | Rows preselected when the table renders.                                                        |
-| `rowClassName`        | `string | (row: T, index: number) => string`                      | `undefined` | Apply custom class names to rows, either statically or dynamically based on row data.           |
+| **Prop Name**         | **Type**                                                             | **Default**    | **Description**                                                                                  |
+|-----------------------|----------------------------------------------------------------------|----------------|--------------------------------------------------------------------------------------------------|
+| `columns`             | `Column<T>[]`                                                       | **Required**   | Defines the structure of the table columns, including labels, keys, formatting, and renderers.  |
+| `data`                | `T[]`                                                               | **Required**   | Array of data objects to render in the table.                                                   |
+| `primaryKey`          | `keyof T`                                                           | **Required**   | Unique identifier for each row (used for selection).                                            |
+| `selectable`          | `boolean`                                                           | `false`        | Enables row selection.                                                                          |
+| `onSelectionChange`   | `(selectedRows: T[]) => void`                                       | `undefined`    | Callback triggered when selected rows change.                                                   |
+| `initialSelectedRows` | `T[]`                                                               | `[]`           | Rows preselected when the table renders.                                                        |
+| `rowClassName`        | `string \| (row: T, index: number) => string`                       | `undefined`    | Apply custom class names to rows, either statically or dynamically based on row data.           |
 
 ### `Column<T>`
 
-| **Key**       | **Type**                                               | **Description**                                                                                  |
-|---------------|--------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| `key`         | `keyof T | '__virtualKey1' | '__virtualKey2'`          | Key from the data object to display in this column or a virtual key.                             |
-| `label`       | `string`                                               | The column header text.                                                                          |
-| `render`      | `(value: T[keyof T] | undefined, row: T) => React.ReactNode` | Custom render function for column data.                                                         |
-| `sortable`    | `boolean`                                              | If true, this column supports sorting.                                                          |
-| `formatType`  | `'date' | 'currency' | 'percentage' | 'text'`          | Optional data formatting type for automatic formatting.                                          |
+| **Key**      | **Type**                                               | **Description**                                                                                  |
+|--------------|--------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `key`        | `keyof T \| '__virtualKey1' \| '__virtualKey2'`        | Key from the data object to display in this column or a virtual key.                             |
+| `label`      | `string`                                               | The column header text.                                                                          |
+| `render`     | `(value: T[keyof T] \| undefined, row: T) => React.ReactNode` | Custom render function for column data.                                                         |
+| `sortable`   | `boolean`                                              | If true, this column supports sorting.                                                          |
+| `formatType` | `'date' \| 'currency' \| 'percentage' \| 'text'`       | Optional data formatting type for automatic formatting.                                          |
 
 ---
+
 
 ### Examples
 
