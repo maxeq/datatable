@@ -1,6 +1,6 @@
 {
     "name": "@maxeq-ui/datatable",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A customizable data table component for React.",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -24,7 +24,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/maxeq-ui/datatable.git"
+        "url": "https://github.com/maxeq/datatable.git"
     },
     "author": "Maksims Vološčuks maxeq1@gmail.com https://github.com/maxeq",
     "license": "MIT",
