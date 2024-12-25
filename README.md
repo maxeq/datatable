@@ -124,4 +124,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 
-We welcome contributions! Feel free to submit issues or pull requests on [GitHub](https://github.com/your-repository/datatable).
+We welcome contributions! Feel free to submit issues or pull requests on [GitHub](https://github.com/maxeq/datatable).
