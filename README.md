@@ -53,12 +53,42 @@ const columns = [
   { key: 'age', label: 'Age', sortable: true, formatType: 'number' },
   { key: 'city', label: 'City', formatType: 'text' },
   { key: 'balance', label: 'Balance', sortable: true, formatType: 'currency' },
+  { key: 'birthDate', label: 'Birth Date', sortable: true, formatType: 'date' },
+  { key: 'discountRate', label: 'Discount Rate', formatType: 'percentage' },
+  { key: 'status', label: 'Status', render: (value) => (value ? 'Active' : 'Inactive') },
 ];
 
 const data = [
-  { id: 1, name: 'John Doe', age: 30, city: 'New York', balance: 12345.67 },
-  { id: 2, name: 'Jane Smith', age: 25, city: 'Los Angeles', balance: 9876.54 },
-  { id: 3, name: 'Mike Johnson', age: 35, city: 'Chicago', balance: 5432.10 },
+  {
+    id: 1,
+    name: 'John Doe',
+    age: 30,
+    city: 'New York',
+    balance: 12345.67,
+    birthDate: '1993-04-15',
+    discountRate: 0.15,
+    status: true,
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    age: 25,
+    city: 'Los Angeles',
+    balance: 9876.54,
+    birthDate: '1998-08-25',
+    discountRate: 0.1,
+    status: false,
+  },
+  {
+    id: 3,
+    name: 'Mike Johnson',
+    age: 35,
+    city: 'Chicago',
+    balance: 5432.1,
+    birthDate: '1988-01-12',
+    discountRate: 0.2,
+    status: true,
+  },
 ];
 
 const App = () => (
@@ -68,9 +98,9 @@ const App = () => (
     primaryKey="id"
     selectable={true}
     initialSelectedRows={[data[0]]}
-    onSelectionChange={(selectedRows) => console.log(selectedRows)}
-    rowClassName={(row, index) =>
-      row.age > 30 ? 'bg-red-100' : 'bg-green-100'
+    onSelectionChange={(selectedRows) => console.log('Selected Rows:', selectedRows)}
+    rowClassName={(row) =>
+      row.balance > 10000 ? 'bg-green-100' : row.status ? 'bg-blue-100' : 'bg-red-100'
     }
   />
 );
