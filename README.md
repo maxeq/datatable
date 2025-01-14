@@ -45,12 +45,27 @@ npm install react react-dom lucide-react
 Here’s an example of how to use the updated `DataTable` component:
 
 ```tsx
-import React from 'react';
-import { DataTable } from '@maxeq-ui/datatable';
+'use client';
 
-const columns = [
+import React from 'react';
+import { Column, DataTable } from '@maxeq-ui/datatable';
+
+// Define the data type
+interface Data {
+  id: number;
+  name: string;
+  age: number;
+  city: string;
+  balance: number;
+  birthDate: string;
+  discountRate: number;
+  status: boolean;
+}
+
+// Explicitly type the columns
+const columns: Column<Data>[] = [
   { key: 'name', label: 'Name', sortable: true, formatType: 'text' },
-  { key: 'age', label: 'Age', sortable: true, formatType: 'number' },
+  { key: 'age', label: 'Age', sortable: true, formatType: 'text' },
   { key: 'city', label: 'City', formatType: 'text' },
   { key: 'balance', label: 'Balance', sortable: true, formatType: 'currency' },
   { key: 'birthDate', label: 'Birth Date', sortable: true, formatType: 'date' },
@@ -58,7 +73,7 @@ const columns = [
   { key: 'status', label: 'Status', render: (value) => (value ? 'Active' : 'Inactive') },
 ];
 
-const data = [
+const data: Data[] = [
   {
     id: 1,
     name: 'John Doe',
@@ -89,23 +104,191 @@ const data = [
     discountRate: 0.2,
     status: true,
   },
+  {
+    id: 4,
+    name: 'Sarah Miller',
+    age: 28,
+    city: 'Miami',
+    balance: 23456.78,
+    birthDate: '1994-02-20',
+    discountRate: 0.25,
+    status: false,
+  },
+  {
+    id: 5,
+    name: 'David Lee',
+    age: 40,
+    city: 'San Francisco',
+    balance: 8765.43,
+    birthDate: '1981-05-10',
+    discountRate: 0.3,
+    status: true,
+  },
+  {
+    id: 6,
+    name: 'Emily Davis',
+    age: 32,
+    city: 'Dallas',
+    balance: 4567.89,
+    birthDate: '1989-09-01',
+    discountRate: 0.18,
+    status: false,
+  },
+  {
+    id: 7,
+    name: 'Daniel Clark',
+    age: 45,
+    city: 'Seattle',
+    balance: 11234.56,
+    birthDate: '1976-11-30',
+    discountRate: 0.12,
+    status: true,
+  },
+  {
+    id: 8,
+    name: 'Linda Rodriguez',
+    age: 27,
+    city: 'Houston',
+    balance: 7890.12,
+    birthDate: '1995-06-18',
+    discountRate: 0.22,
+    status: false,
+  },
+  {
+    id: 9,
+    name: 'James Anderson',
+    age: 38,
+    city: 'Denver',
+    balance: 6543.21,
+    birthDate: '1983-04-02',
+    discountRate: 0.28,
+    status: true,
+  },
+  {
+    id: 10,
+    name: 'Olivia Wilson',
+    age: 29,
+    city: 'Boston',
+    balance: 3210.54,
+    birthDate: '1993-07-10',
+    discountRate: 0.14,
+    status: false,
+  },
+  {
+    id: 11,
+    name: 'Liam Brown',
+    age: 33,
+    city: 'Austin',
+    balance: 1478.93,
+    birthDate: '1988-10-15',
+    discountRate: 0.23,
+    status: true,
+  },
+  {
+    id: 12,
+    name: 'Sophia Moore',
+    age: 22,
+    city: 'Phoenix',
+    balance: 8923.45,
+    birthDate: '1999-03-25',
+    discountRate: 0.21,
+    status: false,
+  },
+  {
+    id: 13,
+    name: 'Lucas Taylor',
+    age: 31,
+    city: 'Las Vegas',
+    balance: 4512.67,
+    birthDate: '1990-12-05',
+    discountRate: 0.27,
+    status: true,
+  },
+  {
+    id: 14,
+    name: 'Charlotte Hall',
+    age: 37,
+    city: 'San Diego',
+    balance: 6345.89,
+    birthDate: '1984-08-16',
+    discountRate: 0.19,
+    status: false,
+  },
+  {
+    id: 15,
+    name: 'Benjamin Scott',
+    age: 43,
+    city: 'Portland',
+    balance: 1287.54,
+    birthDate: '1978-11-22',
+    discountRate: 0.16,
+    status: true,
+  },
+  {
+    id: 16,
+    name: 'Amelia Walker',
+    age: 26,
+    city: 'Philadelphia',
+    balance: 9634.21,
+    birthDate: '1994-09-07',
+    discountRate: 0.29,
+    status: false,
+  },
+  {
+    id: 17,
+    name: 'Mason Harris',
+    age: 34,
+    city: 'Detroit',
+    balance: 1478.23,
+    birthDate: '1987-05-01',
+    discountRate: 0.11,
+    status: true,
+  },
+  {
+    id: 18,
+    name: 'Isabella Young',
+    age: 24,
+    city: 'Charlotte',
+    balance: 2315.34,
+    birthDate: '1997-01-14',
+    discountRate: 0.2,
+    status: false,
+  },
+  {
+    id: 19,
+    name: 'Alexander King',
+    age: 41,
+    city: 'Salt Lake City',
+    balance: 7893.45,
+    birthDate: '1980-04-30',
+    discountRate: 0.26,
+    status: true,
+  },
+  {
+    id: 20,
+    name: 'Mia Green',
+    age: 29,
+    city: 'Orlando',
+    balance: 5678.12,
+    birthDate: '1992-10-22',
+    discountRate: 0.13,
+    status: false,
+  },
 ];
 
 const App = () => (
   <DataTable
     columns={columns}
     data={data}
-    primaryKey="id"
     selectable={true}
-    initialSelectedRows={[data[0]]}
+    primaryKey="id"
+    rowClassName={(row, index) => (index % 2 ? 'bg-stone-800' : '')}
     onSelectionChange={(selectedRows) => console.log('Selected Rows:', selectedRows)}
-    rowClassName={(row) =>
-      row.balance > 10000 ? 'bg-green-100' : row.status ? 'bg-blue-100' : 'bg-red-100'
-    }
   />
 );
 
 export default App;
+
 ```
 ---
 
