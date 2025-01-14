@@ -1,6 +1,8 @@
 import { formattedValueTable } from '@/utils/formatting';
-import { ArrowDown, ArrowUp, CheckIcon } from 'lucide-react';
 import React, { useState } from 'react';
+import ArrowDown from './icons/ArrowDown';
+import ArrowUp from './icons/ArrowUp';
+import CheckIcon from './icons/Check';
 
 export type VirtualKeys = '__virtualKey1' | '__virtualKey2';
 
@@ -109,14 +111,14 @@ const DataTable = <T extends object>({
   return (
     <div className="w-full">
       <div className="overflow-x-auto">
-        <table className="b w-full bg-background text-sm">
-          <thead className="border border-l-0 border-r-0 border-t-0 border-b-grey-3 bg-grey-2 capitalize">
+        <table className="w-full bg-background text-sm">
+          <thead className="border border-l-0 border-r-0 border-t-0 capitalize">
             <tr className="border font-semibold">
               {selectable && (
-                <th className="w-[40px] pl-3 text-center">
+                <th className="w-10 h-10 pl-3 text-center">
                   <div
-                    className={`flex h-5 w-5 items-center justify-center rounded-sm border border-grey-5 ${
-                      selectedRows.size === data.length ? 'bg-primary' : 'bg-transparent'
+                    className={`flex h-5 w-5 items-center justify-center rounded-sm border ${
+                      selectedRows.size === data.length ? 'bg-gray-500' : 'bg-transparent'
                     }`}
                     onClick={toggleSelectAll}
                   >
@@ -149,21 +151,15 @@ const DataTable = <T extends object>({
                           {sortConfig?.key === column.key ? (
                             sortConfig.direction === 'asc' ? (
                               <ArrowDown
-                                color="hsl(var(--primary))"
-                                size={20}
                                 className="ml-2 transform transition-transform"
                               />
                             ) : (
                               <ArrowUp
-                                color="hsl(var(--primary))"
-                                size={20}
                                 className="ml-2 transform transition-transform"
                               />
                             )
                           ) : (
                             <ArrowUp
-                              color="hsl(var(--grey-5))"
-                              size={20}
                               className="ml-2 transform transition-transform"
                             />
                           )}
@@ -185,12 +181,12 @@ const DataTable = <T extends object>({
                 <tr
                   key={String(rowKey)}
                   onClick={() => toggleRowSelection(rowKey)}
-                  className={`border hover:bg-primary/20 ${selectable ? 'hover:cursor-pointer' : ''} ${customClass}`}
+                  className={`border hover:bg-black ${selectable ? 'hover:cursor-pointer' : ''} ${customClass}`}
                 >
                   {selectable && (
-                    <td className="w-[40px] pl-3 text-center">
+                    <td className="w-10 h-10 pl-3 text-center">
                       <div
-                        className={`flex h-5 w-5 items-center justify-center rounded-sm border border-grey-4 ${
+                        className={`flex w-5 h-5 items-center justify-center rounded-sm border border-grey-4 ${
                           selectedRows.has(rowKey) ? 'bg-primary' : 'bg-transparent'
                         }`}
                       >
