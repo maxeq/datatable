@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CheckIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+const ArrowDownIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -11,10 +11,11 @@ const CheckIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props} 
+    {...props}
   >
-    <path d="M20 6 9 17l-5-5" />
+    <path d="M12 5v14" />
+    <path d="m19 12-7 7-7-7" />
   </svg>
 );
 
-export default CheckIcon;
+export default ArrowDownIcon;
