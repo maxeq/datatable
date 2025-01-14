@@ -113,14 +113,14 @@ const DataTable = <T extends object>({
       <div className="overflow-x-auto">
         <table className="w-full bg-background text-sm">
           <thead className="border border-l-0 border-r-0 border-t-0 capitalize">
-            <tr className="border font-semibold">
+            <tr className="border font-semibold w-10 h-10">
               {selectable && (
-                <th className="w-10 h-10 pl-3 text-center">
+                <th className="w-10 h-10 pl-3 text-center" onClick={toggleSelectAll}>
                   <div
                     className={`flex h-5 w-5 items-center justify-center rounded-sm border ${
-                      selectedRows.size === data.length ? 'bg-gray-500' : 'bg-transparent'
+                      selectedRows.size === data.length ? 'bg-primary' : 'bg-transparent'
                     }`}
-                    onClick={toggleSelectAll}
+                    
                   >
                     {selectedRows.size === data.length && <CheckIcon />}
                   </div>
