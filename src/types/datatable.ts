@@ -6,6 +6,7 @@ export type Column<T> = {
   label: string; 
   render?: (value: T[keyof T] | undefined, row: T) => React.ReactNode; 
   sortable?: boolean; 
+  formatType?: 'date' | 'currency' | 'percentage' | 'text';
 };
 
 

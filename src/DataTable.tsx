@@ -240,6 +240,4 @@ const DataTable = <T extends object>({
   );
 };
 
-DataTable.displayName = 'DataTable';
-
 export default DataTable;

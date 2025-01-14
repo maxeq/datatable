@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx", 
     "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
@@ -9,7 +10,6 @@
     "moduleResolution": "node",
     "declaration": true,
     "outDir": "./dist",
-    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
